@@ -4,7 +4,7 @@ import LoginPage from "./Pages/LoginPage";
 import MainPage from "./Pages/MainPage";
 import users from "./dummy/users.json"
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(null)
   const nav = useNavigate()
 
