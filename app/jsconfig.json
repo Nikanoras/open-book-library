@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "checkJs": true,
     "jsx": "react",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "lib": ["es2019", "dom", "dom.iterable"]
   }
 }
