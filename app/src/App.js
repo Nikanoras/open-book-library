@@ -9,21 +9,23 @@ const App = () => {
   const [books, setBooks] = useState([
     {
       isbnNumber: "9780140328721",
-      title: "Clean Code",
-      author: "Robert Cecil Martin",
+      title: "Fantastic Mr. Fox",
+      authors: ["Roald Dahl"],
     },
   ]);
+
   const nav = useNavigate();
 
   useEffect(() => {
-    nav("/login");
+    if (!sessionStorage.getItem("user")) {
+      nav("/login");
+    }
   }, [user]);
 
   const onSuccessfulLogin = (newUser) => {
+    sessionStorage.setItem("user", newUser.email)
     setUser(newUser);
-    setTimeout(() => {
-      nav("/");
-    }, 100);
+    nav("/");
   };
 
   return (
