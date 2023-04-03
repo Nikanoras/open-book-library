@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{4CDC44B1-FBE3-4B18-9ADA-F26ACE6CC2BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenBookLibrary.Api", "src\OpenBookLibrary.Api\OpenBookLibrary.Api.csproj", "{F1E8A8E2-A4C9-4D78-AA35-19E7241AD831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenBookLibrary.Application", "src\OpenBookLibrary.Application\OpenBookLibrary.Application.csproj", "{EF58C292-6BFE-4E37-AF2F-D24F405BA1BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenBookLibrary.Contracts", "src\OpenBookLibrary.Contracts\OpenBookLibrary.Contracts.csproj", "{A2DB0F71-8320-4EAE-8BD8-DB363ACA55D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F1E8A8E2-A4C9-4D78-AA35-19E7241AD831} = {4CDC44B1-FBE3-4B18-9ADA-F26ACE6CC2BB}
+		{EF58C292-6BFE-4E37-AF2F-D24F405BA1BF} = {4CDC44B1-FBE3-4B18-9ADA-F26ACE6CC2BB}
+		{A2DB0F71-8320-4EAE-8BD8-DB363ACA55D0} = {4CDC44B1-FBE3-4B18-9ADA-F26ACE6CC2BB}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1E8A8E2-A4C9-4D78-AA35-19E7241AD831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E8A8E2-A4C9-4D78-AA35-19E7241AD831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E8A8E2-A4C9-4D78-AA35-19E7241AD831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E8A8E2-A4C9-4D78-AA35-19E7241AD831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF58C292-6BFE-4E37-AF2F-D24F405BA1BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF58C292-6BFE-4E37-AF2F-D24F405BA1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF58C292-6BFE-4E37-AF2F-D24F405BA1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF58C292-6BFE-4E37-AF2F-D24F405BA1BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2DB0F71-8320-4EAE-8BD8-DB363ACA55D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2DB0F71-8320-4EAE-8BD8-DB363ACA55D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2DB0F71-8320-4EAE-8BD8-DB363ACA55D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2DB0F71-8320-4EAE-8BD8-DB363ACA55D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
