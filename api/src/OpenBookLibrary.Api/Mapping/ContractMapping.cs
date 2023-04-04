@@ -6,11 +6,13 @@ namespace OpenBookLibrary.Api.Mapping;
 
 public static class ContractMapping
 {
-    public static Book MapToBook(this CreateBookRequest request)
+    public static Book MapToBook(this CreateBookRequest request, string openBookTitle)
     {
         return new Book
         {
-            Id = Guid.NewGuid()
+            Id = Guid.NewGuid(),
+            Isbn13 = request.Isbn13,
+            Title = openBookTitle
         };
     }
 
@@ -18,7 +20,14 @@ public static class ContractMapping
     {
         return new BookResponse
         {
-            Id = book.Id
+            Id = book.Id,
+            Isbn13 = book.Isbn13,
+            Title = book.Title
         };
+    }
+
+    public static IEnumerable<BookResponse> MapToResponse(this IEnumerable<Book> books)
+    {
+        return books.Select(MapToResponse);
     }
 }

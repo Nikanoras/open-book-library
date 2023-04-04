@@ -10,5 +10,7 @@ public static class ApiEndpoints
 
         public const string Create = Base;
         public const string Get = $"{Base}/{{id:guid}}";
+        public const string GetAll = Base;
+        public const string Delete = $"{Base}/{{idOrIsbn13}}";
     }
 }
