@@ -8,27 +8,32 @@
     <projectFile profileName="http">src/OpenBookLibrary.WebApi/OpenBookLibrary.WebApi.csproj</projectFile>
     <projectFile profileName="https">src/OpenBookLibrary.WebApi/OpenBookLibrary.WebApi.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="80d421af-d344-4f0a-981c-61e94c244fc5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/IApplicationMarker.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/OpenLibraryBook.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/BookService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IBookService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IOpenLibraryService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/OpenLibraryService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Validators/BookValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/BookEndpointExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/CreateBookEndpoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/DeleteBookEndpoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/GetAllBooksEndpoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/GetBookEndpoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/EndpointsExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Mapping/ValidationMappingMiddleware.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Responses/ValidationFailureResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OpenBookLibrary/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OpenBookLibrary/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/ApiEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/ApiEndpoints.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Controllers/BooksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Controllers/BooksController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Mapping/ContractMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Mapping/ContractMapping.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/OpenBookLibrary.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/OpenBookLibrary.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/ApplicationServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/ApplicationServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/Book.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/Book.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/OpenLibraryBook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/OpenLibraryBook.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/OpenBookLibrary.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/OpenBookLibrary.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/BookRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/BookRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/IBookRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/IBookRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/OpenBookLibrary.Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/OpenBookLibrary.Contracts.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Requests/CreateBookRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Requests/CreateBookRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/BookService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/BookService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IBookService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IBookService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IOpenLibraryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IOpenLibraryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/OpenLibraryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/OpenLibraryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Validators/BookValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Validators/BookValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Responses/BookResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Responses/BookResponse.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +41,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/OpenBookLibrary.Api/Controllers/BooksController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7117d42cd57d43d0544e6486a55fb2270dab87faa94ae694f822d226bb3351d/RuleComponent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/816dbaba8a29ece3dd3dc326642858d27d2d19142f9a2109bb04617985ec9/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8aeca8dfcec95a81b42a28e5c138e1c321e89def3fed605511172a8beaec/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ab38f4ada21c65c6a0838ec0cfba0c09f94d6fabb1016d58da1d8e7288253/HttpClientFactoryServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c07d444f10cfea95b513fdf6439f3f65c31415a5ca4f6054a3ba62c9c1338c/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/nikanoras.zavadskij/Documents/GitHub/OpenBookLibrary/api/src/OpenBookLibrary.Application/Models/Book.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -51,22 +66,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\znika\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\znika\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\znika\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\nikanoras.zavadskij\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\nikanoras.zavadskij\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\nikanoras.zavadskij\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.OpenBookLibrary.Api: https">
     <configuration name="OpenBookLibrary.Api: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/OpenBookLibrary.Api/OpenBookLibrary.Api.csproj" />
@@ -171,6 +191,9 @@
       <workItem from="1680546306679" duration="1579000" />
       <workItem from="1680548194965" duration="124000" />
       <workItem from="1680630112314" duration="4962000" />
+      <workItem from="1680858799170" duration="161000" />
+      <workItem from="1680859010193" duration="3671000" />
+      <workItem from="1680867942929" duration="6065000" />
     </task>
     <task id="LOCAL−00001" summary="Add web api project">
       <created>1677525527787</created>

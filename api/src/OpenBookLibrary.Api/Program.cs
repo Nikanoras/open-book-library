@@ -1,3 +1,5 @@
+using OpenBookLibrary.Api.Endpoints;
+using OpenBookLibrary.Api.Mapping;
 using OpenBookLibrary.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseMiddleware<ValidationMappingMiddleware>();
+
+app.MapApiEndpoints();
 
 app.Run();

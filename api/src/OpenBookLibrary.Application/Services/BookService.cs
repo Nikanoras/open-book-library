@@ -1,25 +1,43 @@
 using FluentValidation;
 using OpenBookLibrary.Application.Models;
 using OpenBookLibrary.Application.Repositories;
+using OpenBookLibrary.Contracts.Requests;
 
 namespace OpenBookLibrary.Application.Services;
 
 public class BookService : IBookService
 {
     private readonly IBookRepository _bookRepository;
-    private readonly IValidator<Book> _bookValidator;
+    private readonly IValidator<CreateBookRequest> _bookValidator;
+    private readonly IOpenLibraryClient _openLibraryClient;
 
-    public BookService(IBookRepository bookRepository, IValidator<Book> bookValidator)
+    public BookService(IOpenLibraryClient openLibraryClient, IBookRepository bookRepository,
+        IValidator<CreateBookRequest> bookValidator)
     {
+        _openLibraryClient = openLibraryClient;
         _bookRepository = bookRepository;
         _bookValidator = bookValidator;
     }
 
-    public async Task<bool> CreateAsync(Book book, CancellationToken token = default)
+    public async Task<Book?> CreateAsync(CreateBookRequest request, CancellationToken token = default)
     {
-        await _bookValidator.ValidateAndThrowAsync(book, token);
+        await _bookValidator.ValidateAndThrowAsync(request, token);
 
-        return await _bookRepository.CreateAsync(book, token);
+        var openBook = await _openLibraryClient.GetBookByIsbn13Async(request.Isbn13, token);
+
+        if (openBook is null) return null;
+
+        var book = new Book
+        {
+            Id = Guid.NewGuid(),
+            Isbn13 = request.Isbn13,
+            Title = openBook.Title,
+            Authors = string.Join(", ", openBook.Authors.Select(x => x.Name))
+        };
+
+        await _bookRepository.CreateAsync(book, token);
+
+        return book;
     }
 
     public async Task<Book?> GetByIdAsync(Guid id, CancellationToken token = default)

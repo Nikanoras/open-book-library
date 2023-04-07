@@ -9,7 +9,17 @@
 
     <ItemGroup>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1"/>
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\OpenBookLibrary.Contracts\OpenBookLibrary.Contracts.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Mapping\"/>
     </ItemGroup>
 
 </Project>
