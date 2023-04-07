@@ -15,13 +15,13 @@ public class OpenLibraryClient : IOpenLibraryClient
         _memoryCache = memoryCache;
     }
 
-    public async Task<OpenLibraryBook?> GetBookByIsbn13Async(string isbn13, CancellationToken token = default)
+    public async Task<OpenLibraryResponse?> GetBookByIsbn13Async(string isbn13, CancellationToken token = default)
     {
-        var exists = _memoryCache.TryGetValue(isbn13, out OpenLibraryBook? book);
+        var exists = _memoryCache.TryGetValue(isbn13, out OpenLibraryResponse? book);
         if (exists) return book;
 
         var response =
-            await _httpClient.GetFromJsonAsync<Dictionary<string, OpenLibraryBook>>(
+            await _httpClient.GetFromJsonAsync<Dictionary<string, OpenLibraryResponse>>(
                 $"books?bibkeys=ISBN:{isbn13}&format=json&jscmd=data", token);
 
 

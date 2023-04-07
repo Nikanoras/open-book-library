@@ -1,25 +1,24 @@
 using FluentValidation;
 using OpenBookLibrary.Application.Models;
 using OpenBookLibrary.Application.Repositories;
-using OpenBookLibrary.Contracts.Requests;
 
 namespace OpenBookLibrary.Application.Services;
 
 public class BookService : IBookService
 {
     private readonly IBookRepository _bookRepository;
-    private readonly IValidator<CreateBookRequest> _bookValidator;
+    private readonly IValidator<CreateBookModel> _bookValidator;
     private readonly IOpenLibraryClient _openLibraryClient;
 
     public BookService(IOpenLibraryClient openLibraryClient, IBookRepository bookRepository,
-        IValidator<CreateBookRequest> bookValidator)
+        IValidator<CreateBookModel> bookValidator)
     {
         _openLibraryClient = openLibraryClient;
         _bookRepository = bookRepository;
         _bookValidator = bookValidator;
     }
 
-    public async Task<Book?> CreateAsync(CreateBookRequest request, CancellationToken token = default)
+    public async Task<Book?> CreateAsync(CreateBookModel request, CancellationToken token = default)
     {
         await _bookValidator.ValidateAndThrowAsync(request, token);
 
@@ -45,9 +44,10 @@ public class BookService : IBookService
         return await _bookRepository.GetByIdAsync(id, token);
     }
 
-    public async Task<IEnumerable<Book>> GetAllAsync(CancellationToken token = default)
+    public async Task<IEnumerable<Book>> GetAllAsync(GetAllBooksOptions getAllBooksOptions,
+        CancellationToken token = default)
     {
-        return await _bookRepository.GetAllAsync(token);
+        return await _bookRepository.GetAllAsync(getAllBooksOptions, token);
     }
 
     public async Task DeleteById(Guid id, CancellationToken token = default)
@@ -58,5 +58,10 @@ public class BookService : IBookService
     public async Task DeleteByIsbn13(string isbn13, CancellationToken token = default)
     {
         await _bookRepository.DeleteByIsbn13(isbn13, token);
+    }
+
+    public Task<int> GetCountAsync(string? isbn13, CancellationToken token = default)
+    {
+        return _bookRepository.GetCountAsync(isbn13, token);
     }
 }

@@ -1,10 +1,19 @@
 ﻿using OpenBookLibrary.Application.Models;
+using OpenBookLibrary.Contracts.Requests;
 using OpenBookLibrary.Contracts.Responses;
 
 namespace OpenBookLibrary.Api.Mapping;
 
 public static class ContractMapping
 {
+    public static CreateBookModel MapToCreateBookModel(this CreateBookRequest request)
+    {
+        return new CreateBookModel
+        {
+            Isbn13 = request.Isbn13
+        };
+    }
+
     public static BookResponse MapToResponse(this Book book)
     {
         return new BookResponse
@@ -16,8 +25,29 @@ public static class ContractMapping
         };
     }
 
-    public static IEnumerable<BookResponse> MapToResponse(this IEnumerable<Book> books)
+    public static BooksResponse MapToResponse(this IEnumerable<Book> books,
+        int page, int pageSize, int totalCount)
     {
-        return books.Select(MapToResponse);
+        return new BooksResponse
+        {
+            Items = books.Select(MapToResponse),
+            Page = page,
+            PageSize = pageSize,
+            Total = totalCount
+        };
+    }
+
+    public static GetAllBooksOptions MapToOptions(this GetAllBooksRequest request)
+    {
+        return new GetAllBooksOptions
+        {
+            Title = request.Title,
+            Isbn13 = request.Isbn13,
+            SortField = request.SortBy?.Trim('+', '-'),
+            SortOrder = request.SortBy is null ? SortOrder.Unsorted :
+                request.SortBy.StartsWith('-') ? SortOrder.Descending : SortOrder.Ascending,
+            Page = request.Page.GetValueOrDefault(PagedRequest.DefaultPage),
+            PageSize = request.PageSize.GetValueOrDefault(PagedRequest.DefaultPageSize)
+        };
     }
 }

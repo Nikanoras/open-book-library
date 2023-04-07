@@ -1,10 +1,10 @@
 using FluentValidation;
+using OpenBookLibrary.Application.Models;
 using OpenBookLibrary.Application.Services;
-using OpenBookLibrary.Contracts.Requests;
 
 namespace OpenBookLibrary.Application.Validators;
 
-public class BookValidator : AbstractValidator<CreateBookRequest>
+public class BookValidator : AbstractValidator<CreateBookModel>
 {
     private readonly IOpenLibraryClient _openLibraryClient;
 
@@ -19,7 +19,7 @@ public class BookValidator : AbstractValidator<CreateBookRequest>
             .WithMessage(t => $"No book exists with provided ISBN13: {t.Isbn13}");
     }
 
-    private async Task<bool> MustExist(CreateBookRequest request, string isbn13, CancellationToken token = default)
+    private async Task<bool> MustExist(CreateBookModel request, string isbn13, CancellationToken token = default)
     {
         var book = await _openLibraryClient.GetBookByIsbn13Async(isbn13, token);
 

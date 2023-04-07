@@ -16,7 +16,7 @@ public static class CreateBookEndpoint
                 CancellationToken token
             ) =>
             {
-                var book = await bookService.CreateAsync(request, token);
+                var book = await bookService.CreateAsync(request.MapToCreateBookModel(), token);
 
                 if (book is null) return Results.BadRequest();
 
@@ -25,8 +25,7 @@ public static class CreateBookEndpoint
                 return TypedResults.CreatedAtRoute(bookResponse, GetBookEndpoint.Name, new { id = book.Id });
             })
             .WithName(Name)
-            .Produces<BookResponse>(StatusCodes.Status201Created)
-            .Produces(StatusCodes.Status404NotFound);
+            .Produces<BookResponse>(StatusCodes.Status201Created);
         return app;
     }
 }

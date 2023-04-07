@@ -14,12 +14,4 @@
         <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\OpenBookLibrary.Contracts\OpenBookLibrary.Contracts.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Mapping\"/>
-    </ItemGroup>
-
 </Project>
