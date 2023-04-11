@@ -1,5 +1,8 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols;
+using OpenBookLibrary.Application.Database;
 using OpenBookLibrary.Application.Repositories;
 using OpenBookLibrary.Application.Services;
 
@@ -21,6 +24,16 @@ public static class ApplicationServiceCollectionExtensions
             x.BaseAddress = new Uri("https://openlibrary.org/api/");
         });
 
+        return services;
+    }
+    
+    public static IServiceCollection AddDatabase(this IServiceCollection services,
+        ConfigurationManager config)
+    {
+        var connectionStringBuilder = new ConnectionStringBuilder(config);
+        services.AddSingleton<IDbConnectionFactory>(_ => 
+            new SqlConnectionFactory(connectionStringBuilder.Build()));
+        services.AddSingleton<DbInitializer>();
         return services;
     }
 }

@@ -12,26 +12,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80d421af-d344-4f0a-981c-61e94c244fc5" name="Changes" comment="Migrate to minimal api">
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/CreateBookModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/GetAllBooksOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Requests/GetAllBooksRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Requests/PagedRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Responses/BooksResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Contracts/Responses/PagedResponse.cs" afterDir="false" />
+    <list default="true" id="80d421af-d344-4f0a-981c-61e94c244fc5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Database/ConnectionStringBuilder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Database/DbConnectionFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Database/DbInitializer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OpenBookLibrary/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OpenBookLibrary/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/CreateBookEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/CreateBookEndpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/GetAllBooksEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Endpoints/Books/GetAllBooksEndpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Mapping/ContractMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Mapping/ContractMapping.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Clients/IOpenLibraryClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Clients/IOpenLibraryClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Clients/OpenLibraryClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Clients/OpenLibraryClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/OpenLibraryBook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Models/OpenLibraryResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Api/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/ApplicationServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/ApplicationServiceCollectionExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/OpenBookLibrary.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/OpenBookLibrary.Application.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/BookRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/BookRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/IBookRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Repositories/IBookRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/BookService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/BookService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IBookService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Services/IBookService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Validators/BookValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/OpenBookLibrary.Application/Validators/BookValidator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,20 +32,28 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/15e423bdf02b407a90b79c0b505b521911020/4c/87ccd893/SqlConnection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7117d42cd57d43d0544e6486a55fb2270dab87faa94ae694f822d226bb3351d/RuleComponent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/789b158a98468e474a2af1348cfd47e7792de2ae2344f55a03ddf85b16699b/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/816dbaba8a29ece3dd3dc326642858d27d2d19142f9a2109bb04617985ec9/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8aeca8dfcec95a81b42a28e5c138e1c321e89def3fed605511172a8beaec/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ab38f4ada21c65c6a0838ec0cfba0c09f94d6fabb1016d58da1d8e7288253/HttpClientFactoryServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/af7a1fd16db25e80d3e562916655e0aa58f0a179668fefe98c8148d7cb354d3a/DbConnection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c07d444f10cfea95b513fdf6439f3f65c31415a5ca4f6054a3ba62c9c1338c/DefaultValidatorExtensions_Validate.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/nikanoras.zavadskij/Documents/GitHub/OpenBookLibrary/api/src/OpenBookLibrary.Application/Models/Book.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/nikanoras.zavadskij/Documents/GitHub/OpenBookLibrary/api/src/OpenBookLibrary.Application/Models/Book.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/nikanoras.zavadskij/Documents/GitHub/OpenBookLibrary/api/src/OpenBookLibrary.Application/ApplicationServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="MigrationScriptOptions">
+    <option name="ignoreImplicitObjects" value="true" />
+    <option name="ignoreSourceCode" value="false" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2MKnnBhyw25DgPD0TrMbcDmqItE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -75,9 +73,14 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "HotReloadSettingsPage",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb",
+      "sqlserver"
+    ],
     "rider.external.source.directories": [
       "C:\\Users\\nikanoras.zavadskij\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache",
       "C:\\Users\\nikanoras.zavadskij\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache",
@@ -191,7 +194,9 @@
       <workItem from="1680630112314" duration="4962000" />
       <workItem from="1680858799170" duration="161000" />
       <workItem from="1680859010193" duration="3671000" />
-      <workItem from="1680867942929" duration="8830000" />
+      <workItem from="1680867942929" duration="10782000" />
+      <workItem from="1681207383279" duration="1317000" />
+      <workItem from="1681210399505" duration="8297000" />
     </task>
     <task id="LOCAL−00001" summary="Add web api project">
       <created>1677525527787</created>
@@ -205,7 +210,14 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1677527835995</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="GetAll with parameters">
+      <created>1680880220809</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680880220809</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +242,7 @@
     <MESSAGE value="Add web api project" />
     <MESSAGE value="Add Book domain model and some tests" />
     <MESSAGE value="Migrate to minimal api" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrate to minimal api" />
+    <MESSAGE value="GetAll with parameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="GetAll with parameters" />
   </component>
 </project>

@@ -1,15 +1,28 @@
-﻿using OpenBookLibrary.Application.Models;
+﻿using Dapper;
+using OpenBookLibrary.Application.Database;
+using OpenBookLibrary.Application.Models;
 
 namespace OpenBookLibrary.Application.Repositories;
 
 public class BookRepository : IBookRepository
 {
+    private readonly IDbConnectionFactory _dbConnectionFactory;
     private readonly List<Book> _books = new();
 
-    public Task<bool> CreateAsync(Book book, CancellationToken token = default)
+    public BookRepository(IDbConnectionFactory dbConnectionFactory)
     {
+        _dbConnectionFactory = dbConnectionFactory;
+    }
+    public async Task<bool> CreateAsync(Book book, CancellationToken token = default)
+    {
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+
+        var result = await connection.ExecuteAsync(new CommandDefinition("""
+            INSERT INTO Books Values (@Id, @Isbn13, @Title, @Authors) 
+        """, book, cancellationToken: token));
+        
         _books.Add(book);
-        return Task.FromResult(true);
+        return result > 0;
     }
 
     public Task<Book?> GetByIdAsync(Guid id, CancellationToken token = default)
