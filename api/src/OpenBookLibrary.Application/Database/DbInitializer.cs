@@ -29,9 +29,9 @@ public class DbInitializer
             BEGIN
                 CREATE TABLE Books (
                     Id UNIQUEIDENTIFIER primary key,
-                    Isbn13 VARCHAR(13) not null,
-                    Title TEXT not null,
-                    Authors TEXT not null
+                    Isbn13 NVARCHAR(13) not null,
+                    Title NVARCHAR(200) not null,
+                    Authors NVARCHAR(200) not null
                 )
             END
         """));

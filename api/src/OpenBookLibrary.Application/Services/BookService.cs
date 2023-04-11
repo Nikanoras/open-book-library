@@ -8,14 +8,16 @@ public class BookService : IBookService
 {
     private readonly IBookRepository _bookRepository;
     private readonly IValidator<CreateBookModel> _bookValidator;
+    private readonly IValidator<GetAllBooksOptions> _optionsValidator;
     private readonly IOpenLibraryClient _openLibraryClient;
 
     public BookService(IOpenLibraryClient openLibraryClient, IBookRepository bookRepository,
-        IValidator<CreateBookModel> bookValidator)
+        IValidator<CreateBookModel> bookValidator, IValidator<GetAllBooksOptions> optionsValidator)
     {
         _openLibraryClient = openLibraryClient;
         _bookRepository = bookRepository;
         _bookValidator = bookValidator;
+        _optionsValidator = optionsValidator;
     }
 
     public async Task<Book?> CreateAsync(CreateBookModel request, CancellationToken token = default)
@@ -44,10 +46,12 @@ public class BookService : IBookService
         return await _bookRepository.GetByIdAsync(id, token);
     }
 
-    public async Task<IEnumerable<Book>> GetAllAsync(GetAllBooksOptions getAllBooksOptions,
+    public async Task<IEnumerable<Book>> GetAllAsync(GetAllBooksOptions options,
         CancellationToken token = default)
     {
-        return await _bookRepository.GetAllAsync(getAllBooksOptions, token);
+        await _optionsValidator.ValidateAndThrowAsync(options, token);
+        
+        return await _bookRepository.GetAllAsync(options, token);
     }
 
     public async Task DeleteById(Guid id, CancellationToken token = default)

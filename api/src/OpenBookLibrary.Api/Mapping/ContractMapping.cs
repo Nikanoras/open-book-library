@@ -43,6 +43,7 @@ public static class ContractMapping
         {
             Title = request.Title,
             Isbn13 = request.Isbn13,
+            Author = request.Author,
             SortField = request.SortBy?.Trim('+', '-'),
             SortOrder = request.SortBy is null ? SortOrder.Unsorted :
                 request.SortBy.StartsWith('-') ? SortOrder.Descending : SortOrder.Ascending,

@@ -21,28 +21,50 @@ public class BookRepository : IBookRepository
             INSERT INTO Books Values (@Id, @Isbn13, @Title, @Authors) 
         """, book, cancellationToken: token));
         
-        _books.Add(book);
         return result > 0;
     }
 
-    public Task<Book?> GetByIdAsync(Guid id, CancellationToken token = default)
+    public async Task<Book?> GetByIdAsync(Guid id, CancellationToken token = default)
     {
-        var book = _books.SingleOrDefault(x => x.Id == id);
-        return Task.FromResult(book);
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+
+        var result = await connection.QuerySingleOrDefaultAsync<Book>(new CommandDefinition("""
+            SELECT * FROM Books
+            WHERE Id = @Id
+        """, new { Id = id }, cancellationToken: token));
+        return result;
     }
 
-    public Task<IEnumerable<Book>> GetAllAsync(GetAllBooksOptions options, CancellationToken token = default)
+    public async Task<IEnumerable<Book>> GetAllAsync(GetAllBooksOptions options, CancellationToken token = default)
     {
-        var result = _books.AsEnumerable();
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
-        if (!string.IsNullOrEmpty(options.Isbn13)) result = result.Where(x => x.Isbn13 == options.Isbn13);
-
+        var orderClause = string.Empty;
         if (options.SortField is not null)
-            result = options.SortOrder == SortOrder.Ascending
-                ? result.OrderBy(x => x.Title)
-                : result.OrderByDescending(x => x.Title);
+        {
+            orderClause = $"""
+            ORDER BY {options.SortField} {(options.SortOrder == SortOrder.Ascending ? "ASC" : "DESC")}
+            """;
+        }
+        
+        var result = await connection.QueryAsync<Book>(new CommandDefinition($"""
+            SELECT * FROM Books
+            WHERE (@Isbn13 IS NULL OR Isbn13 LIKE ('%' + @Isbn13 + '%'))
+            AND (@Title IS NULL OR Title LIKE ('%' + @Title + '%'))
+            AND (@Author IS NULL OR Authors LIKE ('%' + @Author + '%'))
+            {orderClause}
+        """, new { options.Isbn13, options.Title, options.Author, options.SortField }, cancellationToken: token));
+        return result;
+        
 
-        return Task.FromResult(result.Skip((options.Page - 1) * options.PageSize).Take(options.PageSize));
+        // if (!string.IsNullOrEmpty(options.Isbn13)) result = result.Where(x => x.Isbn13 == options.Isbn13);
+        //
+        // if (options.SortField is not null)
+        //     result = options.SortOrder == SortOrder.Ascending
+        //         ? result.OrderBy(x => x.Title)
+        //         : result.OrderByDescending(x => x.Title);
+        //
+        // return Task.FromResult(result.Skip((options.Page - 1) * options.PageSize).Take(options.PageSize));
     }
 
     public Task<bool> DeleteById(Guid id, CancellationToken token = default)
