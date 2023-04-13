@@ -7,7 +7,7 @@ namespace OpenBookLibrary.Api.Endpoints.Books;
 
 public static class CreateBookEndpoint
 {
-    public const string Name = "CreateBook";
+    private const string Name = "CreateBook";
 
     public static IEndpointRouteBuilder MapCreateBook(this IEndpointRouteBuilder app)
     {
@@ -16,16 +16,17 @@ public static class CreateBookEndpoint
                 CancellationToken token
             ) =>
             {
-                var book = await bookService.CreateAsync(request.MapToCreateBookModel(), token);
+                var model = request.MapToCreateBookModel();
 
-                if (book is null) return Results.BadRequest();
+                var book = await bookService.CreateAsync(model, token);
 
                 var bookResponse = book.MapToResponse();
 
                 return TypedResults.CreatedAtRoute(bookResponse, GetBookEndpoint.Name, new { id = book.Id });
             })
             .WithName(Name)
-            .Produces<BookResponse>(StatusCodes.Status201Created);
+            .Produces<BookResponse>(StatusCodes.Status201Created)
+            .Produces<ValidationFailureResponse>(StatusCodes.Status400BadRequest);
         return app;
     }
 }

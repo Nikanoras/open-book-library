@@ -14,7 +14,7 @@ public class DbInitializer
         await connection.OpenAsync();
 
         var database = config["Database:InitialCatalog"];
-        await connection.ExecuteAsync( new CommandDefinition($"""
+        await connection.ExecuteAsync(new CommandDefinition($"""
             IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = '{database}')
             BEGIN
                 CREATE DATABASE [{database}]
@@ -22,7 +22,7 @@ public class DbInitializer
             USE {database}
         """));
 
-        await connection.ExecuteAsync( new CommandDefinition( """
+        await connection.ExecuteAsync(new CommandDefinition("""
             IF (NOT EXISTS (SELECT * 
                             FROM INFORMATION_SCHEMA.TABLES 
                             WHERE TABLE_NAME = 'Books'))

@@ -8,8 +8,8 @@ public class BookService : IBookService
 {
     private readonly IBookRepository _bookRepository;
     private readonly IValidator<CreateBookModel> _bookValidator;
-    private readonly IValidator<GetAllBooksOptions> _optionsValidator;
     private readonly IOpenLibraryClient _openLibraryClient;
+    private readonly IValidator<GetAllBooksOptions> _optionsValidator;
 
     public BookService(IOpenLibraryClient openLibraryClient, IBookRepository bookRepository,
         IValidator<CreateBookModel> bookValidator, IValidator<GetAllBooksOptions> optionsValidator)
@@ -20,13 +20,14 @@ public class BookService : IBookService
         _optionsValidator = optionsValidator;
     }
 
-    public async Task<Book?> CreateAsync(CreateBookModel request, CancellationToken token = default)
+    public async Task<Book> CreateAsync(CreateBookModel request, CancellationToken token = default)
     {
         await _bookValidator.ValidateAndThrowAsync(request, token);
 
         var openBook = await _openLibraryClient.GetBookByIsbn13Async(request.Isbn13, token);
 
-        if (openBook is null) return null;
+        if (openBook is null)
+            throw new ArgumentException($"Book by provided ISBN13: {request.Isbn13} not found", nameof(request.Isbn13));
 
         var book = new Book
         {
@@ -50,7 +51,7 @@ public class BookService : IBookService
         CancellationToken token = default)
     {
         await _optionsValidator.ValidateAndThrowAsync(options, token);
-        
+
         return await _bookRepository.GetAllAsync(options, token);
     }
 
@@ -64,8 +65,8 @@ public class BookService : IBookService
         await _bookRepository.DeleteByIsbn13(isbn13, token);
     }
 
-    public Task<int> GetCountAsync(string? isbn13, CancellationToken token = default)
+    public Task<int> GetCountAsync(string? isbn13, string? title, string? author, CancellationToken token = default)
     {
-        return _bookRepository.GetCountAsync(isbn13, token);
+        return _bookRepository.GetCountAsync(isbn13, title, author, token);
     }
 }

@@ -16,7 +16,7 @@ public class SqlConnectionFactory : IDbConnectionFactory
     {
         _connectionString = connectionString;
     }
-    
+
     public async Task<IDbConnection> CreateConnectionAsync(CancellationToken token = default)
     {
         var connection = new SqlConnection(_connectionString);

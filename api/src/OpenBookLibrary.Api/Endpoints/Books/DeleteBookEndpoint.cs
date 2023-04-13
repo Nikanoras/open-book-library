@@ -4,7 +4,7 @@ namespace OpenBookLibrary.Api.Endpoints.Books;
 
 public static class DeleteBookEndpoint
 {
-    public const string Name = "DeleteBook";
+    private const string Name = "DeleteBook";
 
     public static IEndpointRouteBuilder MapDeleteBook(this IEndpointRouteBuilder app)
     {

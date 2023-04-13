@@ -24,10 +24,7 @@ public class ConnectionStringBuilder
             Encrypt = true
         };
 
-        if (useDatabase)
-        {
-            builder.InitialCatalog = _config["Database:InitialCatalog"];
-        }
+        if (useDatabase) builder.InitialCatalog = _config["Database:InitialCatalog"];
 
         return builder.ToString();
     }
