@@ -1,9 +1,0 @@
-GET https://localhost:7080/api/books/057dbb9f-3d64-4bdb-88d7-a30d905e8d18
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-04-03T215257.200.json
-
-###
-
