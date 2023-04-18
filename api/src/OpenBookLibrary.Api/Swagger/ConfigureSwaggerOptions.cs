@@ -8,12 +8,14 @@ namespace OpenBookLibrary.Api.Swagger;
 public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
 {
     private readonly IHostEnvironment _environment;
+    private readonly IConfiguration _config;
     private readonly IApiVersionDescriptionProvider _provider;
 
-    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider, IHostEnvironment environment)
+    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider, IHostEnvironment environment, IConfiguration config)
     {
         _provider = provider;
         _environment = environment;
+        _config = config;
     }
 
     public void Configure(SwaggerGenOptions options)
@@ -27,11 +29,14 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
                     Version = description.ApiVersion.ToString()
                 });
 
-        options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+        const string securityDefinitionName = "oauth2";
+        var tenantId = _config["Authentication:AzureAd:TenantId"]!;
+        var readScope = _config["Authentication:AzureAd:ReadScope"]!;
+        options.AddSecurityDefinition(securityDefinitionName, new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
             Description = "OAuth2.0 Auth Code with PKCE",
-            Name = "oauth2",
+            Name = securityDefinitionName,
             Type = SecuritySchemeType.OAuth2,
             Flows = new OpenApiOAuthFlows
             {
@@ -39,11 +44,11 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
                 {
                     AuthorizationUrl =
                         new Uri(
-                            "https://login.microsoftonline.com/568d4164-f614-4369-b13a-58d83c467147/oauth2/v2.0/authorize"),
+                            $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize"),
                     TokenUrl = new Uri(
-                        "https://login.microsoftonline.com/568d4164-f614-4369-b13a-58d83c467147/oauth2/v2.0/token"),
+                        $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"),
                     Scopes = new Dictionary<string, string>
-                        { { "api://53c3623c-bb9c-4001-b176-0b34c508dfe7/ReadAccess", "read the api" } }
+                        { { readScope, "read the api" } }
                 }
             }
         });
@@ -56,7 +61,7 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "oauth2"
+                        Id = securityDefinitionName
                     }
                 },
                 Array.Empty<string>()

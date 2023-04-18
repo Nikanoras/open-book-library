@@ -19,10 +19,10 @@ public class DbInitializer
             BEGIN
                 CREATE DATABASE [{database}]
             END
-            USE {database}
         """));
 
-        await connection.ExecuteAsync(new CommandDefinition("""
+        await connection.ExecuteAsync(new CommandDefinition($"""
+            USE {database}
             IF (NOT EXISTS (SELECT * 
                             FROM INFORMATION_SCHEMA.TABLES 
                             WHERE TABLE_NAME = 'Books'))
