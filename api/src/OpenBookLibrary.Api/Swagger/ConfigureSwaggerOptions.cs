@@ -6,9 +6,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace OpenBookLibrary.Api.Swagger;
 
 public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
-    {
-    private readonly IApiVersionDescriptionProvider _provider;
+{
     private readonly IHostEnvironment _environment;
+    private readonly IApiVersionDescriptionProvider _provider;
 
     public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider, IHostEnvironment environment)
     {
@@ -19,16 +19,14 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     public void Configure(SwaggerGenOptions options)
     {
         foreach (var description in _provider.ApiVersionDescriptions)
-        {
             options.SwaggerDoc(
                 description.GroupName,
                 new OpenApiInfo
                 {
                     Title = _environment.ApplicationName,
-                    Version = description.ApiVersion.ToString(),
+                    Version = description.ApiVersion.ToString()
                 });
-        }
-        
+
         options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
@@ -39,14 +37,17 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
             {
                 AuthorizationCode = new OpenApiOAuthFlow
                 {
-                    AuthorizationUrl = new Uri("https://login.microsoftonline.com/568d4164-f614-4369-b13a-58d83c467147/oauth2/v2.0/authorize"),
-                    TokenUrl = new Uri("https://login.microsoftonline.com/568d4164-f614-4369-b13a-58d83c467147/oauth2/v2.0/token"),
-                    Scopes = new Dictionary<string, string>() { {"api://53c3623c-bb9c-4001-b176-0b34c508dfe7/ReadAccess", "read the api"}},
-                    
+                    AuthorizationUrl =
+                        new Uri(
+                            "https://login.microsoftonline.com/568d4164-f614-4369-b13a-58d83c467147/oauth2/v2.0/authorize"),
+                    TokenUrl = new Uri(
+                        "https://login.microsoftonline.com/568d4164-f614-4369-b13a-58d83c467147/oauth2/v2.0/token"),
+                    Scopes = new Dictionary<string, string>
+                        { { "api://53c3623c-bb9c-4001-b176-0b34c508dfe7/ReadAccess", "read the api" } }
                 }
             }
         });
-        
+
         options.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
             {
@@ -55,7 +56,7 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "oauth2",
+                        Id = "oauth2"
                     }
                 },
                 Array.Empty<string>()

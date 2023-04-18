@@ -1,3 +1,4 @@
+using OpenBookLibrary.Api.Auth;
 using OpenBookLibrary.Api.Mapping;
 using OpenBookLibrary.Application.Services;
 using OpenBookLibrary.Contracts.Requests;
@@ -27,7 +28,8 @@ public static class GetAllBooksEndpoint
                 return TypedResults.Ok(booksResponse);
             })
             .WithName(Name)
-            .Produces<BookResponse>();
+            .Produces<BookResponse>()
+            .RequireAuthorization(AuthConstants.TrustedMemberPolicyName);
         return app;
     }
 }

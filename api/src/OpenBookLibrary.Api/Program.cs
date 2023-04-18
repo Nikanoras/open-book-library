@@ -2,6 +2,7 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
+using OpenBookLibrary.Api.Auth;
 using OpenBookLibrary.Api.Endpoints;
 using OpenBookLibrary.Api.Mapping;
 using OpenBookLibrary.Api.Swagger;
@@ -14,6 +15,17 @@ var config = builder.Configuration;
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("Authentication:AzureAd"));
+
+builder.Services.AddAuthorization(x =>
+{
+    x.AddPolicy(AuthConstants.AdminUserPolicyName,
+        p => p.RequireClaim(AuthConstants.RoleClaimType, AuthConstants.AdminUserClaimValue));
+
+    x.AddPolicy(AuthConstants.TrustedMemberPolicyName,
+        p => p.RequireAssertion(c =>
+            c.User.HasClaim(m => m is { Type: AuthConstants.RoleClaimType, Value: AuthConstants.AdminUserClaimValue }) ||
+            c.User.HasClaim(m => m is { Type: AuthConstants.RoleClaimType, Value: AuthConstants.TrustedMemberClaimValue })));
+});
 
 builder.Services.AddControllers();
 
@@ -43,10 +55,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(x =>
     {
         foreach (var description in app.DescribeApiVersions())
-        {
-            x.SwaggerEndpoint( $"/swagger/{description.GroupName}/swagger.json",
+            x.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
                 description.GroupName);
-        }
         x.OAuthClientId(config["Authentication:AzureAd:ClientId"]);
         x.OAuthUsePkce();
         x.OAuthScopeSeparator(" ");

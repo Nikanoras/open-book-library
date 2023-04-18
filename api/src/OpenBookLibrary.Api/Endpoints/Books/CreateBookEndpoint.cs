@@ -1,3 +1,4 @@
+using OpenBookLibrary.Api.Auth;
 using OpenBookLibrary.Api.Mapping;
 using OpenBookLibrary.Application.Services;
 using OpenBookLibrary.Contracts.Requests;
@@ -26,9 +27,9 @@ public static class CreateBookEndpoint
                 return TypedResults.CreatedAtRoute(bookResponse, GetBookEndpoint.Name, new { id = book.Id });
             })
             .WithName(Name)
-            .RequireAuthorization()
             .Produces<BookResponse>(StatusCodes.Status201Created)
-            .Produces<ValidationFailureResponse>(StatusCodes.Status400BadRequest);
+            .Produces<ValidationFailureResponse>(StatusCodes.Status400BadRequest)
+            .RequireAuthorization(AuthConstants.AdminUserPolicyName);
         return app;
     }
 }
