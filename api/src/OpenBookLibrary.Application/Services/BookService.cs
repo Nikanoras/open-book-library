@@ -1,4 +1,5 @@
 using FluentValidation;
+using OpenBookLibrary.Application.Clients;
 using OpenBookLibrary.Application.Models;
 using OpenBookLibrary.Application.Repositories;
 

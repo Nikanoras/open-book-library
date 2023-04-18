@@ -23,8 +23,10 @@ builder.Services.AddAuthorization(x =>
 
     x.AddPolicy(AuthConstants.TrustedMemberPolicyName,
         p => p.RequireAssertion(c =>
-            c.User.HasClaim(m => m is { Type: AuthConstants.RoleClaimType, Value: AuthConstants.AdminUserClaimValue }) ||
-            c.User.HasClaim(m => m is { Type: AuthConstants.RoleClaimType, Value: AuthConstants.TrustedMemberClaimValue })));
+            c.User.HasClaim(m => m is
+                { Type: AuthConstants.RoleClaimType, Value: AuthConstants.AdminUserClaimValue }) ||
+            c.User.HasClaim(m => m is
+                { Type: AuthConstants.RoleClaimType, Value: AuthConstants.TrustedMemberClaimValue })));
 });
 
 builder.Services.AddControllers();

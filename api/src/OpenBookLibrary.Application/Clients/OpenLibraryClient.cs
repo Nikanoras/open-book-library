@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 using Microsoft.Extensions.Caching.Memory;
 using OpenBookLibrary.Application.Models;
 
-namespace OpenBookLibrary.Application.Services;
+namespace OpenBookLibrary.Application.Clients;
 
 public class OpenLibraryClient : IOpenLibraryClient
 {

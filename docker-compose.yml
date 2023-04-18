@@ -1,6 +1,17 @@
 version: '3.9'
 
 services:
+  api:
+    environment:
+      - Database:DataSource=db
+    build:
+      context: ./api/src
+      dockerfile: OpenBookLibrary.Api/Dockerfile
+    ports:
+      - 80
+      - 433
+    depends_on:
+      - db
 
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest

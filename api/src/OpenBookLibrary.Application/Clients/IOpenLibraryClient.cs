@@ -1,6 +1,6 @@
 using OpenBookLibrary.Application.Models;
 
-namespace OpenBookLibrary.Application.Services;
+namespace OpenBookLibrary.Application.Clients;
 
 public interface IOpenLibraryClient
 {

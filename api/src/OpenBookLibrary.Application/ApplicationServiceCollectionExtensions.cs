@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OpenBookLibrary.Application.Clients;
 using OpenBookLibrary.Application.Database;
 using OpenBookLibrary.Application.Repositories;
 using OpenBookLibrary.Application.Services;

@@ -7,11 +7,12 @@ namespace OpenBookLibrary.Api.Swagger;
 
 public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
 {
-    private readonly IHostEnvironment _environment;
     private readonly IConfiguration _config;
+    private readonly IHostEnvironment _environment;
     private readonly IApiVersionDescriptionProvider _provider;
 
-    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider, IHostEnvironment environment, IConfiguration config)
+    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider, IHostEnvironment environment,
+        IConfiguration config)
     {
         _provider = provider;
         _environment = environment;
