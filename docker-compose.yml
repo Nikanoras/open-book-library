@@ -8,8 +8,8 @@ services:
       context: ./api/src
       dockerfile: OpenBookLibrary.Api/Dockerfile
     ports:
-      - 80
-      - 433
+      - "8080:80"
+      - "8081:433"
     depends_on:
       - db
 
