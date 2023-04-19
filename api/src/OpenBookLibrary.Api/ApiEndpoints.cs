@@ -12,7 +12,7 @@ public static class ApiEndpoints
         public const string Get = $"{Base}/{{id:guid}}";
         public const string GetAll = Base;
         public const string Delete = $"{Base}/{{idOrIsbn13}}";
-        
+
         public const string BorrowBook = $"{Base}/{{id:guid}}/borrows";
         public const string ReturnBook = $"{Base}/{{id:guid}}/borrows";
     }

@@ -14,19 +14,16 @@ public class BorrowService : IBorrowService
         _bookRepository = bookRepository;
         _borrowRepository = borrowRepository;
     }
+
     public async Task<bool> BorrowBookAsync(Guid bookId, Guid userId, CancellationToken token = default)
     {
         var bookExists = await _bookRepository.ExistsByIdAsync(bookId, token);
 
-        if (!bookExists)
-        {
-            return false;
-        }
+        if (!bookExists) return false;
 
         var isBorrowed = await _borrowRepository.IsBookBorrowedAsync(bookId, token);
 
         if (isBorrowed)
-        {
             throw new ValidationException(new[]
             {
                 new ValidationFailure
@@ -35,7 +32,6 @@ public class BorrowService : IBorrowService
                     ErrorMessage = "Book is already borrowed"
                 }
             });
-        }
 
         return await _borrowRepository.BorrowBookAsync(bookId, DateTime.UtcNow, userId, token);
     }
@@ -44,15 +40,11 @@ public class BorrowService : IBorrowService
     {
         var bookExists = await _bookRepository.ExistsByIdAsync(bookId, token);
 
-        if (!bookExists)
-        {
-            return false;
-        }
+        if (!bookExists) return false;
 
         var borrow = await _borrowRepository.GetBorrowAsync(bookId, userId, token);
 
         if (borrow is null)
-        {
             throw new ValidationException(new[]
             {
                 new ValidationFailure
@@ -61,10 +53,8 @@ public class BorrowService : IBorrowService
                     ErrorMessage = "This book is not borrowed or not borrowed by this user"
                 }
             });
-        }
-        
+
         if (borrow.Returned is not null)
-        {
             throw new ValidationException(new[]
             {
                 new ValidationFailure
@@ -73,7 +63,6 @@ public class BorrowService : IBorrowService
                     ErrorMessage = "Book is already returned"
                 }
             });
-        }
 
         return await _borrowRepository.ReturnBookAsync(bookId, DateTime.UtcNow, userId, token);
     }

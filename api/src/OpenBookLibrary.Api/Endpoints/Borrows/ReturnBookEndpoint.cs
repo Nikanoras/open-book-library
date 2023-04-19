@@ -6,10 +6,10 @@ namespace OpenBookLibrary.Api.Endpoints.Borrows;
 public static class ReturnBookEndpoint
 {
     private const string Name = "ReturnBook";
-    
+
     public static IEndpointRouteBuilder MapReturnBook(this IEndpointRouteBuilder app)
     {
-        app.MapPut(Api.ApiEndpoints.Books.ReturnBook,
+        app.MapPut(ApiEndpoints.Books.ReturnBook,
                 async (Guid id, HttpContext context, IBorrowService borrowService, CancellationToken token) =>
                 {
                     var userId = context.GetUserId();

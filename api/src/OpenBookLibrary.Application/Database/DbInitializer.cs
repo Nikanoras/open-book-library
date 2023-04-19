@@ -35,8 +35,8 @@ public class DbInitializer
                 )
             END
         """));
-        
-        await connection.ExecuteAsync(new CommandDefinition($"""
+
+        await connection.ExecuteAsync(new CommandDefinition("""
             IF (NOT EXISTS (SELECT * 
                             FROM INFORMATION_SCHEMA.TABLES 
                             WHERE TABLE_NAME = 'Borrows'))

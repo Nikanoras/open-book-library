@@ -12,8 +12,9 @@ public class BorrowRepository : IBorrowRepository
     {
         _dbConnectionFactory = dbConnectionFactory;
     }
-    
-    public async Task<bool> BorrowBookAsync(Guid bookId, DateTime borrowed, Guid userId, CancellationToken token = default)
+
+    public async Task<bool> BorrowBookAsync(Guid bookId, DateTime borrowed, Guid userId,
+        CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         var result = await connection.ExecuteAsync(new CommandDefinition("""
@@ -40,7 +41,8 @@ public class BorrowRepository : IBorrowRepository
         """, new { BookId = bookId, UserId = userId }, cancellationToken: token));
     }
 
-    public async Task<bool> ReturnBookAsync(Guid bookId, DateTime returned, Guid userId, CancellationToken token = default)
+    public async Task<bool> ReturnBookAsync(Guid bookId, DateTime returned, Guid userId,
+        CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         var result = await connection.ExecuteAsync(new CommandDefinition("""
