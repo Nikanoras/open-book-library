@@ -13,11 +13,9 @@ public static class CreateBookEndpoint
     public static IEndpointRouteBuilder MapCreateBook(this IEndpointRouteBuilder app)
     {
         app.MapPost(ApiEndpoints.Books.Create, async (
-                CreateBookRequest request, IBookService bookService, HttpContext context,
-                CancellationToken token
+                CreateBookRequest request, IBookService bookService, CancellationToken token
             ) =>
             {
-                var user = context.User;
                 var model = request.MapToCreateBookModel();
 
                 var book = await bookService.CreateAsync(model, token);

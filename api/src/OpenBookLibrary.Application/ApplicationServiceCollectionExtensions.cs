@@ -13,7 +13,9 @@ public static class ApplicationServiceCollectionExtensions
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddSingleton<IBookRepository, BookRepository>();
+        services.AddSingleton<IBorrowRepository, BorrowRepository>();
         services.AddSingleton<IBookService, BookService>();
+        services.AddSingleton<IBorrowService, BorrowService>();
         services.AddSingleton<IOpenLibraryClient, OpenLibraryClient>();
         services.AddSingleton<HttpClient>();
         services.AddValidatorsFromAssemblyContaining<IApplicationMarker>(ServiceLifetime.Singleton);

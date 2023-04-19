@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -19,14 +20,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(x =>
 {
     x.AddPolicy(AuthConstants.AdminUserPolicyName,
-        p => p.RequireClaim(AuthConstants.RoleClaimType, AuthConstants.AdminUserClaimValue));
+        p => p.RequireClaim(ClaimTypes.Role, AuthConstants.AdminUserClaimValue));
 
     x.AddPolicy(AuthConstants.TrustedMemberPolicyName,
         p => p.RequireAssertion(c =>
             c.User.HasClaim(m => m is
-                { Type: AuthConstants.RoleClaimType, Value: AuthConstants.AdminUserClaimValue }) ||
+                { Type: ClaimTypes.Role, Value: AuthConstants.AdminUserClaimValue }) ||
             c.User.HasClaim(m => m is
-                { Type: AuthConstants.RoleClaimType, Value: AuthConstants.TrustedMemberClaimValue })));
+                { Type: ClaimTypes.Role, Value: AuthConstants.TrustedMemberClaimValue })));
 });
 
 builder.Services.AddControllers();

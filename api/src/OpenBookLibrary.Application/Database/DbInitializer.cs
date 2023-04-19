@@ -28,10 +28,24 @@ public class DbInitializer
                             WHERE TABLE_NAME = 'Books'))
             BEGIN
                 CREATE TABLE Books (
-                    Id UNIQUEIDENTIFIER primary key,
-                    Isbn13 NVARCHAR(13) not null,
-                    Title NVARCHAR(200) not null,
-                    Authors NVARCHAR(200) not null
+                    Id uniqueidentifier primary key,
+                    Isbn13 nvarchar(13) NOT NULL,
+                    Title nvarchar(200) NOT NULL,
+                    Authors nvarchar(200) NOT NULL
+                )
+            END
+        """));
+        
+        await connection.ExecuteAsync(new CommandDefinition($"""
+            IF (NOT EXISTS (SELECT * 
+                            FROM INFORMATION_SCHEMA.TABLES 
+                            WHERE TABLE_NAME = 'Borrows'))
+            BEGIN
+                CREATE TABLE Borrows (
+                    UserId uniqueidentifier NOT NULL,
+                    Borrowed datetime NOT NULL,
+                    Returned datetime NULL,
+                    BookId uniqueidentifier FOREIGN KEY REFERENCES Books(Id),
                 )
             END
         """));

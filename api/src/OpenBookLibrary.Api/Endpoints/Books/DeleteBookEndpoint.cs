@@ -21,6 +21,7 @@ public static class DeleteBookEndpoint
                 return Results.Ok();
             })
             .WithName(Name)
+            .Produces(StatusCodes.Status200OK)
             .RequireAuthorization(AuthConstants.AdminUserPolicyName);
         return app;
     }

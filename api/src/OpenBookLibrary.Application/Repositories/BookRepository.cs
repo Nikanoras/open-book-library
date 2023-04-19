@@ -98,4 +98,14 @@ public class BookRepository : IBookRepository
             AND (@Author IS NULL OR Authors LIKE ('%' + @Author + '%'))
         """, new { Isbn13 = isbn13, Title = title, Author = author }));
     }
+
+    public async Task<bool> ExistsByIdAsync(Guid id, CancellationToken token = default)
+    {
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+
+        return await connection.ExecuteScalarAsync<bool>(new CommandDefinition("""
+            SELECT COUNT(Id) FROM Books
+            WHERE Id = @Id
+        """, new { Id = id }, cancellationToken: token));
+    }
 }
