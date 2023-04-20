@@ -1,5 +1,6 @@
 using FluentValidation;
 using FluentValidation.Results;
+using OpenBookLibrary.Application.Models;
 using OpenBookLibrary.Application.Repositories;
 
 namespace OpenBookLibrary.Application.Services;
@@ -42,7 +43,7 @@ public class BorrowService : IBorrowService
 
         if (!bookExists) return false;
 
-        var borrow = await _borrowRepository.GetBorrowAsync(bookId, userId, token);
+        var borrow = await _borrowRepository.GetActiveBorrowAsync(bookId, userId, token);
 
         if (borrow is null)
             throw new ValidationException(new[]
@@ -54,16 +55,11 @@ public class BorrowService : IBorrowService
                 }
             });
 
-        if (borrow.Returned is not null)
-            throw new ValidationException(new[]
-            {
-                new ValidationFailure
-                {
-                    PropertyName = "BookId",
-                    ErrorMessage = "Book is already returned"
-                }
-            });
-
         return await _borrowRepository.ReturnBookAsync(bookId, DateTime.UtcNow, userId, token);
+    }
+
+    public Task<IEnumerable<Borrow>> GetBorrowsForUserAsync(Guid userId, CancellationToken token = default)
+    {
+        return _borrowRepository.GetBorrowsForUserAsync(userId, token);
     }
 }

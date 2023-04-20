@@ -33,11 +33,11 @@ public class BorrowRepository : IBorrowRepository
         """, new { BookId = bookId }, cancellationToken: token));
     }
 
-    public async Task<Borrow?> GetBorrowAsync(Guid bookId, Guid userId, CancellationToken token = default)
+    public async Task<Borrow?> GetActiveBorrowAsync(Guid bookId, Guid userId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         return await connection.QuerySingleOrDefaultAsync<Borrow>(new CommandDefinition("""
-            SELECT * FROM Borrows WHERE BookId = @BookId AND UserId = @UserId
+            SELECT * FROM Borrows WHERE BookId = @BookId AND UserId = @UserId AND Returned IS NULL
         """, new { BookId = bookId, UserId = userId }, cancellationToken: token));
     }
 
@@ -50,5 +50,13 @@ public class BorrowRepository : IBorrowRepository
         """, new { Returned = returned, BookId = bookId, UserId = userId }, cancellationToken: token));
 
         return result > 0;
+    }
+
+    public async Task<IEnumerable<Borrow>> GetBorrowsForUserAsync(Guid userId, CancellationToken token = default)
+    {
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        return await connection.QueryAsync<Borrow>(new CommandDefinition("""
+            SELECT BookId, Borrowed, Returned FROM Borrows WHERE UserId = @UserId
+        """, new { UserId = userId }, cancellationToken: token));
     }
 }

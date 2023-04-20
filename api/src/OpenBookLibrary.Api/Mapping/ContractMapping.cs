@@ -51,4 +51,14 @@ public static class ContractMapping
             PageSize = request.PageSize.GetValueOrDefault(PagedRequest.DefaultPageSize)
         };
     }
+
+    public static IEnumerable<BorrowResponse> MapToResponse(this IEnumerable<Borrow> borrows)
+    {
+        return borrows.Select(x => new BorrowResponse
+        {
+            Borrowed = x.Borrowed,
+            BookId = x.BookId,
+            Returned = x.Returned
+        });
+    }
 }

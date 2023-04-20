@@ -16,4 +16,11 @@ public static class ApiEndpoints
         public const string BorrowBook = $"{Base}/{{id:guid}}/borrows";
         public const string ReturnBook = $"{Base}/{{id:guid}}/borrows";
     }
+
+    public static class Borrows
+    {
+        private const string Base = $"{ApiBase}/borrows";
+        
+        public  const string GetUserBorrows = $"{Base}/me";
+    }
 }

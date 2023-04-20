@@ -6,6 +6,7 @@ public static class BorrowEndpointExtensions
     {
         app.MapBorrowBook();
         app.MapReturnBook();
+        app.MapGetUserBorrows();
         return app;
     }
 }
