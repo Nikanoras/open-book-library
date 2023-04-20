@@ -20,7 +20,7 @@ public static class ApiEndpoints
     public static class Borrows
     {
         private const string Base = $"{ApiBase}/borrows";
-        
-        public  const string GetUserBorrows = $"{Base}/me";
+
+        public const string GetUserBorrows = $"{Base}/me";
     }
 }

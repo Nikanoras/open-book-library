@@ -9,16 +9,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Asp.Versioning.Http" Version="7.0.0" />
-        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
-        <PackageReference Include="Microsoft.Identity.Web" Version="2.7.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="Asp.Versioning.Http" Version="7.0.0"/>
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.Identity.Web" Version="2.7.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\OpenBookLibrary.Application\OpenBookLibrary.Application.csproj" />
-        <ProjectReference Include="..\OpenBookLibrary.Contracts\OpenBookLibrary.Contracts.csproj" />
+        <ProjectReference Include="..\OpenBookLibrary.Application\OpenBookLibrary.Application.csproj"/>
+        <ProjectReference Include="..\OpenBookLibrary.Contracts\OpenBookLibrary.Contracts.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
